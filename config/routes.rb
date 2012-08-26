@@ -1,18 +1,22 @@
 
 Smpl_app::Application.routes.draw do
+  get "users/new"
 
   root to: 'static_pages#home'
 
-  get "users/new"
+  match '/signup',  to: 'users#new'
+
+  match '/help',    to: 'static_pages#help'
+  match '/about',   to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
+    
+    
+  match '/', to: 'static_pages#home'
 
   resources :users
   resources :sessions,   only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  
-  match '/signup',  to: 'users#new'
 
-
-  root to: 'static_pages#home'
 
   resources :microposts  
 
