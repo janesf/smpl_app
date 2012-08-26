@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 Smpl_app::Application.routes.draw do
+=======
+Ddd::Application.routes.draw do
+
+
+  root to: 'static_pages#home'
+>>>>>>> sign-up
   get "users/new"
 
   resources :users
   resources :sessions,   only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   
+<<<<<<< HEAD
   match '/signup',  to: 'users#new'
 
 
   root to: 'static_pages#home'
+=======
+  resources :microposts  
+>>>>>>> sign-up
   get "static_pages/home"
   get "static_pages/help"
    get "static_pages/about"
