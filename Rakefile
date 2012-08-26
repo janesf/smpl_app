@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Ddd::Application.load_tasks
+Smpl_app::Application.load_tasks
