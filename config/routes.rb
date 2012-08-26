@@ -1,7 +1,15 @@
 Smpl_app::Application.routes.draw do
   get "users/new"
 
-  resources :users
+   root to: 'static_pages#home'
+
+
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions,   only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   
