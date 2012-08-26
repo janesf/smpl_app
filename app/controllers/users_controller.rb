@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -51,4 +52,5 @@ class UsersController < ApplicationController
         redirect_to signin_url, notice: "Please sign in."
       end
     end
+
 end
