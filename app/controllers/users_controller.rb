@@ -13,4 +13,6 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  def index
+  end
 end
