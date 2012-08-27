@@ -76,7 +76,7 @@ describe User do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
-  
+
   describe "micropost associations" do
     before { @user.save }
     let!(:older_micropost) do 
@@ -85,7 +85,15 @@ describe User do
     let!(:newer_micropost) do
       FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
     end
-    
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(newer_micropost) }
+      its(:feed) { should include(older_micropost) }
+      its(:feed) { should_not include(unfollowed_post) }
+    end    
     it "should destroy associated microposts" do
       microposts = @user.microposts
       @user.destroy
