@@ -1,4 +1,6 @@
-require 'spec_helper'
+require 'spec_helper' 
+require 'application_helper'
+
 
 describe "User pages" do
 
@@ -37,6 +39,11 @@ describe "User pages" do
     end
   end
     
+
+    it { should have_selector('h1',    text: 'Sign up') }
+    it { should have_selector('title', text: full_title('Sign up')) }
+  end
+  
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit edit_user_path(user) }
@@ -69,6 +76,12 @@ describe "User pages" do
       before(:all) { 30.times { FactoryGirl.create(:user) } }
       after(:all)  { User.delete_all }
 
+    
+    describe "pagination" do
+
+      before(:all) { 30.times { FactoryGirl.create(:user) } }
+      after(:all)  { User.delete_all }
+
       it { should have_selector('div.pagination') }
 
       it "should list each user" do
@@ -77,6 +90,7 @@ describe "User pages" do
         end
       end
     end
+
     it "should list each user" do
       User.all.each do |user|
         page.should have_selector('li', text: user.name)
