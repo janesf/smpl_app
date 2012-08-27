@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-
+  def admin?
+  end
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
