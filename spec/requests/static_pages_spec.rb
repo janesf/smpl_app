@@ -19,8 +19,10 @@ describe "Static pages" do
   describe "Home page" do
     before { visit root_path } 
 
-    it "should have the h1 'Sample App'" do
-      page.should have_selector('h1', text: 'Sample App')
+    it "should have the title 'Home'" do
+      visit '/static_pages/home'
+      page.should have_selector('title',
+                        :text => "Ruby on Rails Tutorial Sample App | Home")
     end
 
     it "should have the base title" do
