@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-
+  has_many :followeds, through: :relationships
+  
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -44,8 +45,8 @@ class User < ActiveRecord::Base
     relationships.create!(followed_id: other_user.id)
   end
   def feed
-    
-  end 
+    Micropost.from_users_followed_by(self)
+  end
   private
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
