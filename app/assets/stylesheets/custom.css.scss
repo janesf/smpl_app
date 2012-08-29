@@ -169,6 +169,12 @@ p {
   }
 }
 
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+
 /* footer */
 
 footer {
@@ -250,6 +256,7 @@ aside {
   float: left;
   margin-right: 10px;
 }
+
 /* miscellaneous */
 
 .debug_dump {
